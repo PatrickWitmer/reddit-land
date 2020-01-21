@@ -12,11 +12,22 @@ const RedditCard = styled.li`
   background-color: lightgray;
   font-size: 14px;
   margin: 0px 10px 10px 0px;
+  align-items: center;
 `;
 
 const TitleLink = styled.a`
   text-decoration: none;
   padding: 10px;
+  flex: 3 200px;
+  color: black;
+`;
+
+const Updoots = styled.button`
+  flex: 1 50px;
+`;
+
+const CommentsNum = styled.button`
+  flex: 1 50px;
 `;
 
 class Redditorer extends React.Component {
@@ -64,10 +75,11 @@ class Redditorer extends React.Component {
           {items.map((item, i) => (
             <RedditCard key={i}>
               <img src={item.data.thumbnail} />
+              <Updoots>Updoots: {item.data.score}</Updoots>
               <TitleLink href={'https://reddit.com/' + item.data.permalink}>
                 {item.data.title}
               </TitleLink>
-              <button>{item.data.num_comments}</button>
+              <CommentsNum>Comments: {item.data.num_comments}</CommentsNum>
             </RedditCard>
           ))}
         </RedditMain>
