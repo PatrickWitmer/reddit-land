@@ -1,4 +1,23 @@
 import React from 'react';
+// import RedditCards from './RedditCards';
+import styled from 'styled-components';
+
+const RedditMain = styled.ul`
+  display: block;
+  list-style: none;
+`;
+
+const RedditCard = styled.li`
+  display: flex;
+  background-color: lightgray;
+  font-size: 14px;
+  margin: 0px 10px 10px 0px;
+`;
+
+const TitleLink = styled.a`
+  text-decoration: none;
+  padding: 10px;
+`;
 
 class Redditorer extends React.Component {
   constructor(props) {
@@ -40,16 +59,18 @@ class Redditorer extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
+        // <RedditCards />
+        <RedditMain>
           {items.map((item, i) => (
-            <li key={i}>
-              <a href={'https://reddit.com/' + item.data.permalink}>
-                {item.data.title}
-              </a>
+            <RedditCard key={i}>
               <img src={item.data.thumbnail} />
-            </li>
+              <TitleLink href={'https://reddit.com/' + item.data.permalink}>
+                {item.data.title}
+              </TitleLink>
+              <button>{item.data.num_comments}</button>
+            </RedditCard>
           ))}
-        </ul>
+        </RedditMain>
       );
     }
   }
