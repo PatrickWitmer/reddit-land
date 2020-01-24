@@ -1,5 +1,5 @@
 import React from 'react';
-// import RedditCards from './RedditCards';
+import UpDoots from './UpDoots';
 import styled from 'styled-components';
 
 const RedditMain = styled.ul`
@@ -20,10 +20,6 @@ const TitleLink = styled.a`
   padding: 10px;
   flex: 3 200px;
   color: black;
-`;
-
-const Updoots = styled.button`
-  flex: 1 50px;
 `;
 
 const CommentsNum = styled.button`
@@ -73,11 +69,14 @@ class Redditorer extends React.Component {
         <RedditMain>
           {items.map((item, i) => (
             <RedditCard key={i}>
-              <img src={item.data.thumbnail} />
-              <Updoots>Updoots: {item.data.score}</Updoots>
+              <img src={item.data.thumbnail} alt="Related Post" />
+
+              <UpDoots score={item.data.score} />
+
               <TitleLink href={'https://reddit.com/' + item.data.permalink}>
                 {item.data.title}
               </TitleLink>
+
               <CommentsNum>Comments: {item.data.num_comments}</CommentsNum>
             </RedditCard>
           ))}
