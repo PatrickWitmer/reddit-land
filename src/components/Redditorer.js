@@ -41,7 +41,7 @@ class Redditorer extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://www.reddit.com/r/aww.json')
+    fetch('https://www.reddit.com/r/witcher.json')
       .then(res => res.json())
       .then(
         result => {
@@ -70,7 +70,6 @@ class Redditorer extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        // <RedditCards />
         <RedditMain>
           {items.map((item, i) => (
             <RedditCard key={i}>

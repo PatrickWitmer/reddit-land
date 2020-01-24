@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <HeaderText className="App-header">
-        <p>World of Cuteness</p>
+        <p>Reddit Simulator</p>
 
         <Redditorer />
       </HeaderText>
