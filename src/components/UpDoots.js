@@ -11,9 +11,11 @@ const UpDoots = props => {
   const [newscore, setScore] = useState(props.score);
 
   return (
-    <Updoots onClick={() => setScore(newscore + 1)}>
+    <React.Fragment>
+      <Updoots onClick={() => setScore(newscore + 1)}>Up Doot</Updoots>
       Updoots: {newscore}
-    </Updoots>
+      <Updoots onClick={() => setScore(newscore - 1)}>Down Doot</Updoots>
+    </React.Fragment>
   );
 };
 
