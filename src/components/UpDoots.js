@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Updoots = styled.button`
   flex: 1 50px;
   color: red;
-  height: 100%;
+  height: 50px;
 `;
 
 const UpDoots = props => {
@@ -13,7 +13,6 @@ const UpDoots = props => {
   return (
     <Updoots onClick={() => setScore(newscore + 1)}>
       Updoots: {newscore}
-      <br />
     </Updoots>
   );
 };
