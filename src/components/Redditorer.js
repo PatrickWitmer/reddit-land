@@ -13,6 +13,7 @@ const RedditCard = styled.li`
   font-size: 14px;
   margin: 0px 10px 10px 0px;
   align-items: center;
+  border: 2px solid yellow;
 `;
 
 const TitleLink = styled.a`
@@ -24,6 +25,7 @@ const TitleLink = styled.a`
 
 const CommentsNum = styled.button`
   flex: 1 50px;
+  height: 50px;
 `;
 
 class Redditorer extends React.Component {
