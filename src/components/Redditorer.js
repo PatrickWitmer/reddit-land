@@ -1,14 +1,18 @@
 import React from 'react';
+import SubReddit from './SubReddit';
 import UpDoots from './UpDoots';
 import styled from 'styled-components';
 
 const RedditMain = styled.ul`
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
 `;
 
 const RedditCard = styled.li`
-  display: flex;
+  ${'' /* display: flex; */}
+  align-content: center;
+  flex: 3 150px;
   background-color: lightgray;
   font-size: 14px;
   margin: 0px 10px 10px 0px;
@@ -19,13 +23,15 @@ const RedditCard = styled.li`
 const TitleLink = styled.a`
   text-decoration: none;
   padding: 10px;
-  flex: 3 200px;
+  ${'' /* flex: 3 200px; */}
   color: black;
 `;
 
 const CommentsNum = styled.button`
-  flex: 1 50px;
+  display: flex;
+  align-items: end;
   height: 50px;
+  margin: 50px 50px 0 50px;
 `;
 
 class Redditorer extends React.Component {
@@ -34,12 +40,13 @@ class Redditorer extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
+      subReddit: 'aww'
     };
   }
 
   componentDidMount() {
-    fetch('https://www.reddit.com/r/witcher.json')
+    fetch(`https://www.reddit.com/r/${this.state.subReddit}` + '.json')
       .then(res => res.json())
       .then(
         result => {
@@ -68,21 +75,25 @@ class Redditorer extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <RedditMain>
-          {items.map((item, i) => (
-            <RedditCard key={i}>
-              <img src={item.data.thumbnail} alt="Related Post" />
+        <>
+          <SubReddit subreddit={this.state.subReddit} />
 
-              <UpDoots score={item.data.score} />
+          <RedditMain>
+            {items.map((item, i) => (
+              <RedditCard key={i}>
+                <img src={item.data.thumbnail} alt="Related Post" />
 
-              <TitleLink href={'https://reddit.com/' + item.data.permalink}>
-                {item.data.title}
-              </TitleLink>
+                <UpDoots score={item.data.score} />
 
-              <CommentsNum>Comments: {item.data.num_comments}</CommentsNum>
-            </RedditCard>
-          ))}
-        </RedditMain>
+                <TitleLink href={'https://reddit.com/' + item.data.permalink}>
+                  {item.data.title}
+                </TitleLink>
+
+                <CommentsNum>Comments: {item.data.num_comments}</CommentsNum>
+              </RedditCard>
+            ))}
+          </RedditMain>
+        </>
       );
     }
   }
