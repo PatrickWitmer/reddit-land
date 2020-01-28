@@ -2,6 +2,7 @@ import React from 'react';
 import SubReddit from './SubReddit';
 import UpDoots from './UpDoots';
 import styled from 'styled-components';
+import Async from 'react-async';
 
 const RedditMain = styled.ul`
   display: flex;
@@ -44,8 +45,7 @@ class Redditorer extends React.Component {
       subReddit: 'aww'
     };
   }
-
-  componentDidMount() {
+  loadReddit() {
     fetch(`https://www.reddit.com/r/${this.state.subReddit}` + '.json')
       .then(res => res.json())
       .then(
@@ -65,6 +65,10 @@ class Redditorer extends React.Component {
           });
         }
       );
+  }
+
+  componentDidMount() {
+    this.loadReddit();
   }
 
   render() {

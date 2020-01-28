@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { loadReddit } from './Redditorer';
 
 const Subreddit = styled.input`
   display: block;
@@ -17,7 +18,7 @@ const SubReddit = props => {
       <h5>Enter a subreddit:</h5>
       <Subreddit
         type="text"
-        onChange={e => setSub(e.target.value)}
+        onChange={e => setSub(e.target.value).then(loadReddit())}
         value={newsub}
         name="search"
         placeholder="Subreddit"
