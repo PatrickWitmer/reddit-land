@@ -2,7 +2,6 @@ import React from 'react';
 import SubReddit from './SubReddit';
 import UpDoots from './UpDoots';
 import styled from 'styled-components';
-import Async from 'react-async';
 
 const RedditMain = styled.ul`
   display: flex;
@@ -13,7 +12,7 @@ const RedditMain = styled.ul`
 const RedditCard = styled.li`
   ${'' /* display: flex; */}
   align-content: center;
-  flex: 3 150px;
+  flex: 3 50px;
   background-color: lightgray;
   font-size: 14px;
   margin: 0px 10px 10px 0px;
@@ -42,17 +41,18 @@ class Redditorer extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
-      subReddit: 'aww'
+      subReddit: ''
     };
   }
-  loadReddit() {
-    fetch(`https://www.reddit.com/r/${this.state.subReddit}` + '.json')
+  async loadReddit() {
+    await fetch(`https://www.reddit.com/r/${this.state.subReddit}` + '.json')
       .then(res => res.json())
       .then(
         result => {
           this.setState({
             isLoaded: true,
             items: result.data.children
+            // subReddit: this.state.subReddit
           });
         },
         // Note: it's important to handle errors here
@@ -72,10 +72,12 @@ class Redditorer extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    const { isLoaded, items } = this.state;
+    // if (error) {
+    //   return <div>Error: {error.message}</div>;
+    // } else
+
+    if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (

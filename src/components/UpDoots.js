@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Updoots = styled.button`
   ${'' /* display: flex; */}
-  flex: 1 50px;
   color: red;
   height: 50px;
   margin: 10px;
@@ -11,7 +10,6 @@ const Updoots = styled.button`
 
 const DownDoots = styled.button`
   ${'' /* display: flex; */}
-  flex: 1 50px;
   color: red;
   height: 50px;
   margin: 10px 60px 10px 60px;
